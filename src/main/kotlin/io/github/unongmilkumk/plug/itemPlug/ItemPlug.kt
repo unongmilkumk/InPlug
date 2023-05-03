@@ -1,6 +1,6 @@
-package io.github.unongmilkumk.plug
+package io.github.unongmilkumk.plug.itemPlug
 
-import io.github.unongmilkumk.plug.MetaDataPlug.setData
+import io.github.unongmilkumk.plug.itemPlug.MetaDataPlug.setData
 import net.kyori.adventure.text.Component.text
 import org.bukkit.Material
 import org.bukkit.event.player.PlayerInteractEvent
@@ -10,7 +10,6 @@ import org.bukkit.inventory.meta.ItemMeta
 class ItemPlug(mat : Material) {
     private var item = ItemStack(mat)
     private var im: ItemMeta = item.itemMeta!!
-    private var interact: (PlayerInteractEvent) -> Unit = {}
     fun name(name : String) : ItemPlug {
         item.itemMeta = item.itemMeta.apply {
             this.displayName(text(name))
@@ -34,9 +33,8 @@ class ItemPlug(mat : Material) {
         return this
     }
     fun interact(func: (PlayerInteractEvent) -> Unit) {
-        interact = func
         item.itemMeta = item.itemMeta?.apply {
-            this.setData("interact", func)
+            this.setData("inplug.interact", func)
         }
     }
     fun inplug() : ItemStack = item

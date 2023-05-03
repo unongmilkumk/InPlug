@@ -1,4 +1,4 @@
-package io.github.unongmilkumk.plug
+package io.github.unongmilkumk.plug.itemPlug
 
 import org.bukkit.inventory.meta.ItemMeta
 

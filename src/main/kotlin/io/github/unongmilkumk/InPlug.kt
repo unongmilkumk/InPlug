@@ -9,6 +9,7 @@ object InPlug {
     lateinit var pl : JavaPlugin
     fun register(jp : JavaPlugin) {
         pl = jp
+        if (!jp.dataFolder.exists()) jp.dataFolder.mkdir()
         Bukkit.getPluginManager().registerEvents(ItemPlugEvent, jp)
     }
     fun registerCommand(name : String, ce : CommandExecutor) {

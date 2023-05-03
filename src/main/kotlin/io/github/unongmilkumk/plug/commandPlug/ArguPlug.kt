@@ -6,8 +6,9 @@ import org.bukkit.entity.Player
 class ArguPlug(var argu : Argu, var back : Argu, var commandName : String) {
     lateinit var run : (player : Player) -> Unit
     lateinit var argus : ArrayList<ArguPlug>
-    fun run(function : (player : Player) -> Unit) {
+    fun run(function : (player : Player) -> Unit) : ArguPlug {
         run = function
+        return this
     }
     fun arg(text : String, function : (player : Player) -> Unit): ArguPlug {
         val b = ArguPlug(Argu(text, function), argu, commandName)

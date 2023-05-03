@@ -7,8 +7,9 @@ class CommandPlug(var commandName : String) {
     data class Argu(var text : String, var argf : (player : Player) -> Unit)
     lateinit var run : (player : Player) -> Unit
     lateinit var argus : ArrayList<ArgPlug>
-    fun run(function : (player : Player) -> Unit) {
+    fun run(function : (player : Player) -> Unit) : CommandPlug {
         run = function
+        return this
     }
     fun arg(text : String, function : (player : Player) -> Unit): ArgPlug {
         val b = ArgPlug(Argu(text, function), commandName)

@@ -12,19 +12,23 @@ class GuiPlug(var name : String, var rows : Int) {
     var defInter : (event : InventoryClickEvent) -> Unit = {}
     var inter = HashMap<Int, (InventoryClickEvent) -> Unit>()
     var inventory = Bukkit.createInventory(null, 6 * rows, Component.text(name))
-    fun defItem(item : ItemStack) {
+    fun defItem(item : ItemStack) : GuiPlug {
         defItem = item
+        return this
     }
-    fun defInteract(inter : (event : InventoryClickEvent) -> Unit) {
+    fun defInteract(inter : (event : InventoryClickEvent) -> Unit) : GuiPlug {
         defInter = inter
+        return this
     }
-    fun item(item : ItemStack, vararg slot : Int) {
+    fun item(item : ItemStack, vararg slot : Int) : GuiPlug {
         slot.forEach {
             inventory.setItem(it, item)
         }
+        return this
     }
-    fun interaction(slot : Int, function : (event : InventoryClickEvent) -> Unit) {
+    fun interaction(slot : Int, function : (event : InventoryClickEvent) -> Unit) : GuiPlug {
         inter[slot] = function
+        return this
     }
     fun inplug(): Inventory {
         for (i in (0 until inventory.size - 1)) {
